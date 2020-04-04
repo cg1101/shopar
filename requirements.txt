@@ -1,0 +1,5 @@
+Flask # https://flask.palletsprojects.com/en/1.1.x/
+Flask-Migrate # https://flask-migrate.readthedocs.io/en/latest/
+Flask-SQLAlchemy # https://flask-sqlalchemy.palletsprojects.com/en/2.x/
+PyMySQL # https://pymysql.readthedocs.io/en/latest/
+marshmallow==3.5.0 # https://marshmallow.readthedocs.io/en/stable/
