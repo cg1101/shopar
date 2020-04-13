@@ -64,15 +64,66 @@ _names = set(locals().keys()) | {'_names'}
 #
 ##########################################################################
 
+# Language
+class Language(Base):
+    __table__ = t_languages
+
+class LanguageSchema(Schema):
+    class Meta:
+        fields = ('language_id', 'language')
+
 
 # Merchandise
 class Merchandise(Base):
     __table__ = t_merchandises
 
-
 class MerchandiseSchema(Schema):
     class Meta:
-        fields = ('merchanise_id', 'name', 'description')
+        fields = ('merchandise_id', 'inactive', 'brands_brand_id', 'categories_category_id')
+
+
+# Order
+class Order(Base):
+    __table__ = t_orders
+
+class OrderSchema(Schema):
+    class Meta:
+        fields = ('order_id', 'order_date', 'users_user_id', 'order_statuses_order_status_id',
+            'is_paid_in_full', 'paid_amount', 'total_amount_include_tax', 'total_tax_amount',
+            'discount_code', 'addresses_address_id', 'addresses_users_user_id')
+
+
+# Product
+class Product(Base):
+    __table__ = t_products
+
+class ProductSchema(Schema):
+    class Meta:
+        fields = ('product_id', 'sku', 'price_exclude_tax',
+        'merchandises_merchandise_id', 'taxes_tax_id', 'quantity')
+
+
+# Supplier
+class Supplier(Base):
+    __table__ = t_supplier
+
+class SupplierSchema(Schema):
+    class Meta:
+        fields = ('supply_id', 'supplier_name', 'supplier_no', 'supplier_address',
+            'supplier_suburb_city', 'supplier_state_area', 'supplier_contact_name',
+            'supplier_contact_no', 'inactive')
+
+
+# User
+class User(Base):
+    __table__ = t_users
+
+class UserSchema(Schema):
+    class Meta:
+        fields = ('user_id', 'email', 'mobile', 'phone', 'password',
+            'failed_login_attempts', 'last_failed_login', 'password_reset_hash',
+            'password_request_at', 'external_source', 'external_id', 'inactive',
+            'last_login')
 
 
 ##########################################################################

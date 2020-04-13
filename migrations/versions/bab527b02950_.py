@@ -199,12 +199,12 @@ def upgrade():
     )
     op.create_table('products',
     sa.Column('product_id', mysql.INTEGER(display_width=11), nullable=False),
-    sa.Column('SKU', sa.String(length=45), nullable=False),
+    sa.Column('sku', sa.String(length=45), nullable=False),
     sa.Column('price_exclude_tax', sa.String(length=45), nullable=True),
     sa.Column('merchandises_merchandise_id', mysql.INTEGER(display_width=11), nullable=False),
     sa.Column('taxes_tax_id', mysql.TINYINT(display_width=1), nullable=False),
     sa.Column('quantity', mysql.INTEGER(display_width=11), server_default=sa.text("'0'"), nullable=True),
-    sa.PrimaryKeyConstraint('product_id', 'SKU', 'merchandises_merchandise_id', 'taxes_tax_id')
+    sa.PrimaryKeyConstraint('product_id', 'sku', 'merchandises_merchandise_id', 'taxes_tax_id')
     )
     op.create_table('products_has_spec_group_items',
     sa.Column('products_product_id', mysql.INTEGER(display_width=11), nullable=False),

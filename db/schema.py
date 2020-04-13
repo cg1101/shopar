@@ -231,7 +231,7 @@ t_permissions = Table(
 t_products = Table(
     'products', metadata,
     Column('product_id', INTEGER(11), primary_key=True, nullable=False),
-    Column('SKU', String(45), primary_key=True, nullable=False),
+    Column('sku', String(45), primary_key=True, nullable=False),
     Column('price_exclude_tax', String(45)),
     Column('merchandises_merchandise_id', INTEGER(11), primary_key=True, nullable=False),
     Column('taxes_tax_id', TINYINT(1), primary_key=True, nullable=False),
