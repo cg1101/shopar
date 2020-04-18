@@ -27,22 +27,23 @@ def set_schema(cls, schema_class, schema_key=None):
 
 
 def dump(cls, obj, use=None, extra=None, only=(), exclude=(),
-        prefix=u'', strict=False, context=None, load_only=(), **kwargs):
+         prefix=u'', strict=False, context=None, load_only=(), **kwargs):
     try:
         schema_class = cls._schema_registry.get(use, None)
     except:
         schema_class = None
     if schema_class is None:
-        raise RuntimeError('schema class not found for {0}: key {1}'\
-            .format(cls.__name__, use))
+        raise RuntimeError('schema class not found for {0}: key {1}'
+                           .format(cls.__name__, use))
     s = schema_class(extra=extra, only=only, exclude=exclude,
-            prefix=prefix, strict=strict, context=context)
+                     prefix=prefix, strict=strict, context=context)
     if isinstance(obj, list):
         many = True
     else:
         many = False
     marshal_result = s.dump(obj, many=many, **kwargs)
     return marshal_result.data
+
 
 if mode == 'app':
     Base = database.Model
@@ -64,9 +65,42 @@ _names = set(locals().keys()) | {'_names'}
 #
 ##########################################################################
 
+
+# Address
+class Address(Base):
+    __table__ = t_addresses
+
+
+class AddressSchema(Schema):
+    class Meta:
+        fields = ('address_id', 'address_line', 'suburb_city',
+                  'state_area', 'post_code', 'country', 'type', 'users_user_id')
+
+
+# Brand
+class Brand(Base):
+    __table__ = t_brands
+
+
+class BrandSchema(Schema):
+    class Meta:
+        fields = ('brand_id', 'brand_url', 'inactive')
+
+
+# Category
+class Category(Base):
+    __table__ = t_categories
+
+
+class CategorySchema(Schema):
+    class Meta:
+        fields = ('category_id', 'inactive')
+
+
 # Language
 class Language(Base):
     __table__ = t_languages
+
 
 class LanguageSchema(Schema):
     class Meta:
@@ -77,53 +111,59 @@ class LanguageSchema(Schema):
 class Merchandise(Base):
     __table__ = t_merchandises
 
+
 class MerchandiseSchema(Schema):
     class Meta:
-        fields = ('merchandise_id', 'inactive', 'brands_brand_id', 'categories_category_id')
+        fields = ('merchandise_id', 'inactive',
+                  'brands_brand_id', 'categories_category_id')
 
 
 # Order
 class Order(Base):
     __table__ = t_orders
 
+
 class OrderSchema(Schema):
     class Meta:
         fields = ('order_id', 'order_date', 'users_user_id', 'order_statuses_order_status_id',
-            'is_paid_in_full', 'paid_amount', 'total_amount_include_tax', 'total_tax_amount',
-            'discount_code', 'addresses_address_id', 'addresses_users_user_id')
+                  'is_paid_in_full', 'paid_amount', 'total_amount_include_tax', 'total_tax_amount',
+                  'discount_code', 'addresses_address_id', 'addresses_users_user_id')
 
 
 # Product
 class Product(Base):
     __table__ = t_products
 
+
 class ProductSchema(Schema):
     class Meta:
         fields = ('product_id', 'sku', 'price_exclude_tax',
-        'merchandises_merchandise_id', 'taxes_tax_id', 'quantity')
+                  'merchandises_merchandise_id', 'taxes_tax_id', 'quantity')
 
 
 # Supplier
 class Supplier(Base):
-    __table__ = t_supplier
+    __table__ = t_suppliers
+
 
 class SupplierSchema(Schema):
     class Meta:
         fields = ('supply_id', 'supplier_name', 'supplier_no', 'supplier_address',
-            'supplier_suburb_city', 'supplier_state_area', 'supplier_contact_name',
-            'supplier_contact_no', 'inactive')
+                  'supplier_suburb_city', 'supplier_state_area', 'supplier_contact_name',
+                  'supplier_contact_no', 'inactive')
 
 
 # User
 class User(Base):
     __table__ = t_users
 
+
 class UserSchema(Schema):
     class Meta:
         fields = ('user_id', 'email', 'mobile', 'phone', 'password',
-            'failed_login_attempts', 'last_failed_login', 'password_reset_hash',
-            'password_request_at', 'external_source', 'external_id', 'inactive',
-            'last_login')
+                  'failed_login_attempts', 'last_failed_login', 'password_reset_hash',
+                  'password_request_at', 'external_source', 'external_id', 'inactive',
+                  'last_login')
 
 
 ##########################################################################
