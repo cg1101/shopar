@@ -258,7 +258,7 @@ t_purchase_order_lines = Table(
     'purchase_order_lines', metadata,
     Column('purchase_order_line_id', INTEGER(11), primary_key=True, nullable=False),
     Column('purchase_item', String(255), nullable=False),
-    Column('purcase_quantity', INTEGER(5), nullable=False, server_default=text("'1'")),
+    Column('purchase_quantity', INTEGER(5), nullable=False, server_default=text("'1'")),
     Column('price', DECIMAL(11, 2), nullable=False, server_default=text("'0.00'")),
     Column('note', String(255)),
     Column('inactive', TIMESTAMP),

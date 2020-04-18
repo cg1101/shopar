@@ -20,7 +20,7 @@ def list_merchandises():
     })
 
 
-@bp.route(_name + '/<int:merchandise_id', methods=['GET'])
+@bp.route(_name + '/<int:merchandise_id>', methods=['GET'])
 @api
 @caps()
 def get_merchandise(merchandise_id):

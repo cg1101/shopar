@@ -220,7 +220,7 @@ def upgrade():
     op.create_table('purchase_order_lines',
     sa.Column('purchase_order_line_id', mysql.INTEGER(display_width=11), nullable=False),
     sa.Column('purchase_item', sa.String(length=255), nullable=False),
-    sa.Column('purcase_quantity', mysql.INTEGER(display_width=5), server_default=sa.text("'1'"), nullable=False),
+    sa.Column('purchase_quantity', mysql.INTEGER(display_width=5), server_default=sa.text("'1'"), nullable=False),
     sa.Column('price', sa.DECIMAL(precision=11, scale=2), server_default=sa.text("'0.00'"), nullable=False),
     sa.Column('note', sa.String(length=255), nullable=True),
     sa.Column('inactive', sa.TIMESTAMP(), nullable=True),
