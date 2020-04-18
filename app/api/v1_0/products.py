@@ -13,17 +13,17 @@ _name = __file__.split('/')[-1].split('.')[0]
 @bp.route(_name + '/', methods=['GET'])
 @api
 @caps()
-def list_merchandises():
-    merchandises = m.Merchandise.query.order_by(m.Merchandise.name).all()
+def list_products():
+    products = m.Product.query.all()
     return jsonify({
-        'value': m.Merchandise.dump(merchandises),
+        'value': m.Product.dump(products),
     })
-
+    
 
 @bp.route(_name + '/', methods=['POST'])
 @api
 @caps()
-def create_merchandise():
+def create_product():
     data = MyForm(
 
     ).get_data()
@@ -35,14 +35,15 @@ def create_merchandise():
     })
 
 
-@bp.route(_name + '/<int:merchandise_id>', methods=['GET'])
+@bp.route(_name + '/<int:product_id>', methods=['GET'])
 @api
 @caps()
-def get_merchandise(merchandise_id):
-    merchandise = m.Merchandise.query.get(merchandise_id)
-    if not merchandise:
-        raise InvalidUsage(f'merchandise {merchandise_id} not found')
+def get_merchandise(product_id):
+    product = m.Product.query.get(product_id)
+    if not product:
+        raise InvalidUsage(f'product {product_id} not found')
     return jsonify({
-        'value': m.Merchandise.dump(merchandise),
+        'value': m.Merchandise.dump(product),
     })
+
 
