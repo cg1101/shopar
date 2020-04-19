@@ -15,10 +15,10 @@ _name = __file__.split('/')[-1].split('.')[0]
 @caps()
 def list_users():
     users = m.User.query.all()
-    return jsonify({
-        'value': m.User.dump(users),
-    })
-    
+    return dict(
+        value=m.User.dump(users),
+    )
+
 
 @bp.route(_name + '/', methods=['POST'])
 @api
@@ -30,9 +30,9 @@ def create_user():
     user = m.User(**data)
     SS.add(user)
     SS.commit()
-    return jsonify({
-        'value': m.User.dump(user),
-    })
+    return dict(
+        value=m.User.dump(user),
+    )
 
 
 @bp.route(_name + '/<int:user_id>', methods=['GET'])
@@ -42,8 +42,8 @@ def get_merchandise(user_id):
     user = m.User.query.get(user_id)
     if not user:
         raise InvalidUsage(f'user {user_id} not found')
-    return jsonify({
-        'value': m.User.dump(user),
-    })
+    return dict(
+        value=m.User.dump(user),
+    )
 
 

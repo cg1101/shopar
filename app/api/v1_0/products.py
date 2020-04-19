@@ -15,10 +15,10 @@ _name = __file__.split('/')[-1].split('.')[0]
 @caps()
 def list_products():
     products = m.Product.query.all()
-    return jsonify({
-        'value': m.Product.dump(products),
-    })
-    
+    return dict(
+        value=m.Product.dump(products),
+    )
+
 
 @bp.route(_name + '/', methods=['POST'])
 @api
@@ -30,9 +30,9 @@ def create_product():
     product = m.Product(**data)
     SS.add(product)
     SS.commit()
-    return jsonify({
-        'value': m.Product.dump(product),
-    })
+    return dict(
+        value=m.Product.dump(product),
+    )
 
 
 @bp.route(_name + '/<int:product_id>', methods=['GET'])
@@ -42,8 +42,8 @@ def get_merchandise(product_id):
     product = m.Product.query.get(product_id)
     if not product:
         raise InvalidUsage(f'product {product_id} not found')
-    return jsonify({
-        'value': m.Product.dump(product),
-    })
+    return dict(
+        value=m.Product.dump(product),
+    )
 
 

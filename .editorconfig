@@ -15,7 +15,7 @@ root = true # stop further searching
 [*.py]
 indent_style = space
 indent_size = tab
-trim_trailing_whitespace = unset
+trim_trailing_whitespace = unset # keep spaces in indented block for easy pasting
 tab_width = 4
 end_of_line = lf
 

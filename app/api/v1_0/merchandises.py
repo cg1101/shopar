@@ -16,9 +16,7 @@ _name = __file__.split('/')[-1].split('.')[0]
 @caps()
 def list_merchandises():
     merchandises = m.Merchandise.query.order_by(m.Merchandise.name).all()
-    return jsonify({
-        'value': m.Merchandise.dump(merchandises),
-    })
+    return dict(value=m.Merchandise.dump(merchandises), )
 
 
 @bp.route(_name + '/', methods=['POST'])
@@ -29,9 +27,7 @@ def create_merchandise():
     merchandise = m.Merchandise(**data)
     SS.add(merchandise)
     SS.commit()
-    return jsonify({
-        'value': m.Merchandise.dump(merchandise),
-    })
+    return dict(value=m.Merchandise.dump(merchandise), )
 
 
 @bp.route(_name + '/<int:merchandise_id>', methods=['GET'])
@@ -41,6 +37,4 @@ def get_merchandise(merchandise_id):
     merchandise = m.Merchandise.query.get(merchandise_id)
     if not merchandise:
         raise InvalidUsage(f'merchandise {merchandise_id} not found')
-    return jsonify({
-        'value': m.Merchandise.dump(merchandise),
-    })
+    return dict(value=m.Merchandise.dump(merchandise), )
