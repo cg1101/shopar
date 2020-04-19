@@ -13,37 +13,37 @@ _name = __file__.split('/')[-1].split('.')[0]
 @bp.route(_name + '/', methods=['GET'])
 @api
 @caps()
-def list_products():
-    products = m.Product.query.all()
+def list_users():
+    users = m.User.query.all()
     return jsonify({
-        'value': m.Product.dump(products),
+        'value': m.User.dump(users),
     })
     
 
 @bp.route(_name + '/', methods=['POST'])
 @api
 @caps()
-def create_product():
+def create_user():
     data = MyForm(
 
     ).get_data()
-    product = m.Product(**data)
-    SS.add(product)
+    user = m.User(**data)
+    SS.add(user)
     SS.commit()
     return jsonify({
-        'value': m.Product.dump(product),
+        'value': m.User.dump(user),
     })
 
 
-@bp.route(_name + '/<int:product_id>', methods=['GET'])
+@bp.route(_name + '/<int:user_id>', methods=['GET'])
 @api
 @caps()
-def get_merchandise(product_id):
-    product = m.Product.query.get(product_id)
-    if not product:
-        raise InvalidUsage(f'product {product_id} not found')
+def get_merchandise(user_id):
+    user = m.User.query.get(user_id)
+    if not user:
+        raise InvalidUsage(f'user {user_id} not found')
     return jsonify({
-        'value': m.Product.dump(product),
+        'value': m.User.dump(user),
     })
 
 
