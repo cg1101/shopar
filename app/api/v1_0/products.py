@@ -38,12 +38,11 @@ def create_product():
 @bp.route(_name + '/<int:product_id>', methods=['GET'])
 @api
 @caps()
-def get_merchandise(product_id):
+def get_product(product_id):
     product = m.Product.query.get(product_id)
     if not product:
         raise InvalidUsage(f'product {product_id} not found')
     return dict(
         value=m.Product.dump(product),
     )
-
 

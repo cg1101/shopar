@@ -38,12 +38,11 @@ def create_user():
 @bp.route(_name + '/<int:user_id>', methods=['GET'])
 @api
 @caps()
-def get_merchandise(user_id):
+def get_user(user_id):
     user = m.User.query.get(user_id)
     if not user:
         raise InvalidUsage(f'user {user_id} not found')
     return dict(
         value=m.User.dump(user),
     )
-
 
