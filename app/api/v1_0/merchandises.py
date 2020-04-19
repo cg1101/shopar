@@ -1,3 +1,4 @@
+'''merchandise apis'''
 
 from flask import request, session, jsonify
 
@@ -24,9 +25,7 @@ def list_merchandises():
 @api
 @caps()
 def create_merchandise():
-    data = MyForm(
-
-    ).get_data()
+    data = MyForm().get_data()
     merchandise = m.Merchandise(**data)
     SS.add(merchandise)
     SS.commit()
@@ -45,4 +44,3 @@ def get_merchandise(merchandise_id):
     return jsonify({
         'value': m.Merchandise.dump(merchandise),
     })
-

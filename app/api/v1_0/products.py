@@ -27,11 +27,11 @@ def create_product():
     data = MyForm(
 
     ).get_data()
-    merchandise = m.Merchandise(**data)
-    SS.add(merchandise)
+    product = m.Product(**data)
+    SS.add(product)
     SS.commit()
     return jsonify({
-        'value': m.Merchandise.dump(merchandise),
+        'value': m.Product.dump(product),
     })
 
 

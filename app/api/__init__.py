@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+'''api package'''
 
 # import cStringIO
 import traceback
@@ -13,6 +14,7 @@ from db.db import SS
 
 
 class InvalidUsage(Exception):
+    '''user input error for http requests'''
     status_code = 400
 
     def __init__(self, message, status_code=None, payload=None):

@@ -6,3 +6,4 @@ marshmallow==3.5.0 # https://marshmallow.readthedocs.io/en/stable/
 sqlacodegen==2.1.0 # https://github.com/agronholm/sqlacodegen
 pylint==2.4.4 # https://github.com/PyCQA/pylint
 # autopep8==1.5.1 # https://github.com/hhatto/autopep8
+yapf==0.29.0 # https://pypi.org/project/yapf/
